@@ -1,0 +1,77 @@
+{
+  "personal_info": {
+    "name": "Backend | Data | DevOps Engineer",
+    "title": "Software Engineer",
+    "email": "kontakt@kamilstankowski.pl",
+    "linkedin": "https://www.linkedin.com/in/kamil-sta%C5%84kowski-8b1a661b9/",
+    "github": "https://github.com/m2gnvm",
+    "location": "Poland",
+    "summary": "Dynamic and detail-oriented Back End and Data Engineer with over 5 years of experience in software engineering, specializing in building robust backend systems and data processing solutions. Proficient in a range of programming languages and tools, committed to leveraging big data technologies to enhance business operations.",
+    "profile_image": "/static/images/photo.jpg"
+  },
+  "skills": {
+    "backend": [
+      "Django",
+      "FastAPI",
+      "Python",
+      "REST APIs",
+      "PostgreSQL",
+      "Redis"
+    ],
+    "data": [
+      "PySpark",
+      "Kafka",
+      "MongoDB",
+      "Redis",
+      "HDFS",
+      "Apache Airflow",
+      "Pandas",
+      "NumPy"
+    ],
+    "devops": [
+      "Docker",
+      "Kubernetes",
+      "AWS",
+      "CI/CD",
+      "Git",
+      "Linux"
+    ]
+  },
+  "projects": [
+    {
+      "id": 1,
+      "title": "Elemental Circle Game Backend",
+      "description": "A multiplayer game backend built with Django and FastAPI, featuring real-time gameplay mechanics and user management.",
+      "category": "backend",
+      "technologies": "Django, FastAPI, PostgreSQL, Redis, WebSockets",
+      "link": "https://github.com/m2gnvm/elemental-circle-game",
+      "image": null
+    }
+  ],
+  "experience": [
+    {
+      "title": "Backend Developer",
+      "company": "Cyfrowy Polsat S.A.",
+      "start_date": "2024-12-01",
+      "end_date": null,
+      "description": "Design and develop BI pipelines to process and analyze data from the Polsat Box Go platform. Build REST endpoints to distribute and expose business data. Create data models and reporting solutions to support business intelligence needs.",
+      "technologies": "Python, Django, FastAPI, PostgreSQL, Redis, Apache Airflow, Docker, Kubernetes"
+    },
+    {
+      "title": "Backend Developer/Data Engineer",
+      "company": "REDS S.A.",
+      "start_date": "2022-09-01",
+      "end_date": "2024-11-30",
+      "description": "Built real-time data processing pipelines with PySpark for ingesting and transforming streaming data. Designed and documented data models and flows to improve architecture. Developed an end-to-end data warehouse integrating Kafka and PySpark for analytics. Delivered ETL pipelines to process and analyze railway telemetry in near real-time.",
+      "technologies": "PySpark, Kafka, MongoDB, HDFS, Apache Airflow, Python, Docker, Linux"
+    },
+    {
+      "title": "Software Engineer",
+      "company": "ABIS Sp. z o.o.",
+      "start_date": "2020-06-01",
+      "end_date": null,
+      "description": "Develop backend systems and optimize database infrastructure. Build reporting platforms and analytical dashboards. Design and maintain MySQL databases and schemas. Automate workflows with Python scripts and PyQt applications. Support PHP-based web development and system integrations.",
+      "technologies": "Python, PHP, MySQL, PyQt, JavaScript, HTML, CSS, Linux"
+    }
+  ]
+}

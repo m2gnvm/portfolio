@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Skills Hero -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-4 fw-bold mb-4">Technical Skills</h1>
+                <p class="lead text-muted">Technologies and tools I work with across different domains</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Skills Summary -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Skills Summary</h2>
+                <p class="lead text-muted">A quick overview of my technical expertise</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Backend Summary -->
+            <div class="col-lg-4 col-md-6">
+                <div class="skill-summary-card h-100 p-4 text-center bg-white rounded-3 shadow-sm">
+                    <div class="skill-icon mb-3">
+                        <i class="fas fa-server fa-3x" style="color: #007bff;"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Backend</h4>
+                    <p class="text-muted mb-4">Server-side development and API design</p>
+                    
+                    <div class="skill-count mb-3">
+                        <span class="display-6 fw-bold text-primary">{{ backend_skills|length }}</span>
+                        <span class="text-muted">skills</span>
+                    </div>
+                    
+                    <div class="featured-skills">
+                        <h6 class="fw-bold mb-2">Skills:</h6>
+                        {% for skill in backend_skills %}
+                        <span class="badge bg-light text-dark me-1 mb-1">{{ skill }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Summary -->
+            <div class="col-lg-4 col-md-6">
+                <div class="skill-summary-card h-100 p-4 text-center bg-white rounded-3 shadow-sm">
+                    <div class="skill-icon mb-3">
+                        <i class="fas fa-database fa-3x" style="color: #28a745;"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Data</h4>
+                    <p class="text-muted mb-4">Data processing and analytics</p>
+                    
+                    <div class="skill-count mb-3">
+                        <span class="display-6 fw-bold text-primary">{{ data_skills|length }}</span>
+                        <span class="text-muted">skills</span>
+                    </div>
+                    
+                    <div class="featured-skills">
+                        <h6 class="fw-bold mb-2">Skills:</h6>
+                        {% for skill in data_skills %}
+                        <span class="badge bg-light text-dark me-1 mb-1">{{ skill }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- DevOps Summary -->
+            <div class="col-lg-4 col-md-6">
+                <div class="skill-summary-card h-100 p-4 text-center bg-white rounded-3 shadow-sm">
+                    <div class="skill-icon mb-3">
+                        <i class="fas fa-cogs fa-3x" style="color: #ffc107;"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">DevOps</h4>
+                    <p class="text-muted mb-4">Infrastructure and deployment</p>
+                    
+                    <div class="skill-count mb-3">
+                        <span class="display-6 fw-bold text-primary">{{ devops_skills|length }}</span>
+                        <span class="text-muted">skills</span>
+                    </div>
+                    
+                    <div class="featured-skills">
+                        <h6 class="fw-bold mb-2">Skills:</h6>
+                        {% for skill in devops_skills %}
+                        <span class="badge bg-light text-dark me-1 mb-1">{{ skill }}</span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience Timeline -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Learning Journey</h2>
+                <p class="lead text-muted">How I've developed my skills over time</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-lg-10 mx-auto">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-primary"></div>
+                        <div class="timeline-content">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body p-4">
+                                    <h5 class="fw-bold mb-2">Started Programming</h5>
+                                    <p class="text-muted mb-0">Began my journey with Python and web development</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-success"></div>
+                        <div class="timeline-content">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body p-4">
+                                    <h5 class="fw-bold mb-2">Backend Development</h5>
+                                    <p class="text-muted mb-0">Mastered Django, FastAPI, and RESTful API development</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-info"></div>
+                        <div class="timeline-content">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body p-4">
+                                    <h5 class="fw-bold mb-2">Data Engineering</h5>
+                                    <p class="text-muted mb-0">Specialized in PySpark, Kafka, and big data processing</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-marker bg-warning"></div>
+                        <div class="timeline-content">
+                            <div class="card border-0 shadow-sm">
+                                <div class="card-body p-4">
+                                    <h5 class="fw-bold mb-2">DevOps & Cloud</h5>
+                                    <p class="text-muted mb-0">Gained expertise in Docker, Kubernetes, and cloud platforms</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,113 @@
+import json
+import os
+from datetime import datetime
+from django.shortcuts import render
+
+def load_portfolio_data():
+    """Load portfolio data from JSON file"""
+    json_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static', 'portfolio_data.json')
+    with open(json_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    
+    # Convert string dates to date objects for experience entries
+    for experience in data.get('experience', []):
+        if experience.get('start_date'):
+            experience['start_date'] = datetime.strptime(experience['start_date'], '%Y-%m-%d').date()
+        if experience.get('end_date'):
+            experience['end_date'] = datetime.strptime(experience['end_date'], '%Y-%m-%d').date()
+    
+    return data
+
+def home(request):
+    """Homepage view"""
+    data = load_portfolio_data()
+    
+    # Get featured projects (first 3)
+    featured_projects = data['projects'][:3]
+    
+    # Get skills by category
+    backend_skills = data['skills']['backend']
+    data_skills = data['skills']['data']
+    devops_skills = data['skills']['devops']
+    
+    # Get recent experience
+    recent_experience = data['experience'][0] if data['experience'] else None
+    
+    context = {
+        'personal_info': data['personal_info'],
+        'featured_projects': featured_projects,
+        'backend_skills': backend_skills,
+        'data_skills': data_skills,
+        'devops_skills': devops_skills,
+        'recent_experience': recent_experience,
+    }
+    return render(request, 'main/home.html', context)
+
+def about(request):
+    """About page view"""
+    data = load_portfolio_data()
+    
+    context = {
+        'personal_info': data['personal_info'],
+        'experiences': data['experience'],
+    }
+    return render(request, 'main/about.html', context)
+
+def projects(request):
+    """Projects listing page"""
+    data = load_portfolio_data()
+    category = request.GET.get('category', '')
+    
+    projects_list = data['projects']
+    
+    # Filter by category
+    if category:
+        projects_list = [p for p in projects_list if p['category'] == category]
+    
+    context = {
+        'personal_info': data['personal_info'],
+        'projects': projects_list,
+        'current_category': category,
+    }
+    return render(request, 'main/projects.html', context)
+
+def project_detail(request, project_id):
+    """Individual project detail page"""
+    data = load_portfolio_data()
+    
+    # Find project by ID
+    project = None
+    for p in data['projects']:
+        if p['id'] == project_id:
+            project = p
+            break
+    
+    if not project:
+        return render(request, 'main/404.html', status=404)
+    
+    context = {
+        'personal_info': data['personal_info'],
+        'project': project,
+    }
+    return render(request, 'main/project_detail.html', context)
+
+def contact(request):
+    """Contact page"""
+    data = load_portfolio_data()
+    
+    context = {
+        'personal_info': data['personal_info'],
+    }
+    return render(request, 'main/contact.html', context)
+
+def skills(request):
+    """Skills page with detailed skill information"""
+    data = load_portfolio_data()
+    
+    context = {
+        'personal_info': data['personal_info'],
+        'backend_skills': data['skills']['backend'],
+        'data_skills': data['skills']['data'],
+        'devops_skills': data['skills']['devops'],
+    }
+    return render(request, 'main/skills.html', context)

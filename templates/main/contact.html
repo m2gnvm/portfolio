@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Contact Hero -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-4 fw-bold mb-4">Get In Touch</h1>
+                <p class="lead text-muted">I'm always interested in new opportunities and exciting projects</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Content -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-5">
+            <!-- Contact Information -->
+            <div class="col-lg-8">
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-5">
+                        <h3 class="fw-bold mb-4">Get In Touch</h3>
+                        <p class="lead mb-4">I'm always interested in new opportunities and exciting projects. Feel free to reach out!</p>
+                        
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">Email</h6>
+                                        <a href="mailto:{{ personal_info.email }}" class="text-decoration-none">{{ personal_info.email }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">LinkedIn</h6>
+                                        <a href="{{ personal_info.linkedin }}" class="text-decoration-none" target="_blank">Connect with me</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                        <i class="fab fa-github"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">GitHub</h6>
+                                        <a href="{{ personal_info.github }}" class="text-decoration-none" target="_blank">View my code</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 50px; height: 50px;">
+                                        <i class="fas fa-map-marker-alt"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="fw-bold mb-1">Location</h6>
+                                        <span class="text-muted">{{ personal_info.location }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="display-5 fw-bold mb-3">Let's Work Together</h2>
+                <p class="lead mb-4">I'm always open to discussing new opportunities, creative projects, or just having a chat about technology</p>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="mailto:{{ personal_info.email }}" class="btn btn-light btn-lg">
+                        <i class="fas fa-envelope me-2"></i>Send Email
+                    </a>
+                    <a href="{{ personal_info.linkedin }}" class="btn btn-outline-light btn-lg" target="_blank">
+                        <i class="fab fa-linkedin-in me-2"></i>Connect on LinkedIn
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

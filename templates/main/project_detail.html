@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load portfolio_extras %}
+
+{% block content %}
+<!-- Project Detail Hero -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'main:home' %}">Home</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'main:projects' %}">Projects</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">{{ project.title }}</li>
+                    </ol>
+                </nav>
+                
+                <div class="text-center mb-4">
+                    <h1 class="display-4 fw-bold mb-3">{{ project.title }}</h1>
+                    <div class="d-flex justify-content-center gap-3 mb-3">
+                        <span class="badge bg-primary fs-6">{{ project.category|title }}</span>
+                    </div>
+                    <p class="lead text-muted">{{ project.description }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Project Content -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <!-- Project Image -->
+                {% if project.image %}
+                <div class="mb-5">
+                    <img src="{{ project.image }}" alt="{{ project.title }}" class="img-fluid rounded-3 shadow">
+                </div>
+                {% endif %}
+                
+                <!-- Project Details -->
+                <div class="row g-4 mb-5">
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body p-4">
+                                <h5 class="fw-bold mb-3">Project Information</h5>
+                                <ul class="list-unstyled">
+                                    <li class="mb-2">
+                                        <i class="fas fa-tag text-primary me-2"></i>
+                                        <strong>Category:</strong> {{ project.category|title }}
+                                    </li>
+                                    <li class="mb-2">
+                                        <i class="fas fa-code text-primary me-2"></i>
+                                        <strong>Type:</strong> {{ project.category|title }} Project
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm h-100">
+                            <div class="card-body p-4">
+                                <h5 class="fw-bold mb-3">Technologies Used</h5>
+                                <div class="tech-tags">
+                                    {% for tech in project.technologies|split:"," %}
+                                    <span class="badge bg-light text-dark me-2 mb-2 fs-6">{{ tech }}</span>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project Description -->
+                <div class="mb-5">
+                    <h3 class="fw-bold mb-3">About This Project</h3>
+                    <div class="project-description">
+                        {{ project.description|linebreaks }}
+                    </div>
+                </div>
+                
+                <!-- Project Links -->
+                {% if project.link %}
+                <div class="mb-5">
+                    <h3 class="fw-bold mb-3">Project Links</h3>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a href="{{ project.link }}" class="btn btn-primary btn-lg" target="_blank">
+                            <i class="fas fa-external-link-alt me-2"></i>View Project
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

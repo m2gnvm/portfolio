@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load portfolio_extras %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section bg-gradient-primary text-white py-5">
+    <div class="container">
+        <div class="row align-items-center min-vh-100">
+            <div class="col-lg-6">
+                <div class="hero-content">
+                    <h1 class="display-4 fw-bold mb-4">
+                        Hi, I'm {{ personal_info.name }}
+                    </h1>
+                    <h2 class="h3 mb-4 text-light">
+                        {{ personal_info.title }}
+                    </h2>
+                    <p class="lead mb-4">
+                        {{ personal_info.summary }}
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="{% url 'main:projects' %}" class="btn btn-light btn-lg me-3">View My Work</a>
+                        <a href="{% url 'main:contact' %}" class="btn btn-outline-light btn-lg">Get In Touch</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                {% if personal_info.profile_image %}
+                <img src="{{ personal_info.profile_image }}" alt="Profile" class="img-fluid profile-image shadow-lg" style="width: 400px; height: 400px;">
+                {% else %}
+                <div class="profile-placeholder bg-light rounded-circle d-flex align-items-center justify-content-center mx-auto" style="width: 400px; height: 400px;">
+                    <i class="fas fa-user fa-5x text-muted"></i>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Overview -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Core Expertise</h2>
+                <p class="lead text-muted">Specializing in three key areas of software engineering</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            <!-- Backend Skills -->
+            <div class="col-lg-4 col-md-6">
+                <div class="skill-card h-100 p-4 text-center border rounded-3 shadow-sm">
+                    <div class="skill-icon mb-3">
+                        <i class="fas fa-server fa-3x" style="color: #007bff;"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Backend</h4>
+                    <p class="text-muted mb-4">Server-side development and API design</p>
+                    <div class="skill-tags">
+                        {% for skill in backend_skills|slice:":3" %}
+                        <span class="badge bg-light text-dark me-1 mb-1">{{ skill }}</span>
+                        {% endfor %}
+                        {% if backend_skills|length > 3 %}
+                        <span class="badge bg-secondary">+{{ backend_skills|length|add:"-3" }} more</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Skills -->
+            <div class="col-lg-4 col-md-6">
+                <div class="skill-card h-100 p-4 text-center border rounded-3 shadow-sm">
+                    <div class="skill-icon mb-3">
+                        <i class="fas fa-database fa-3x" style="color: #28a745;"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">Data</h4>
+                    <p class="text-muted mb-4">Data processing and analytics</p>
+                    <div class="skill-tags">
+                        {% for skill in data_skills|slice:":3" %}
+                        <span class="badge bg-light text-dark me-1 mb-1">{{ skill }}</span>
+                        {% endfor %}
+                        {% if data_skills|length > 3 %}
+                        <span class="badge bg-secondary">+{{ data_skills|length|add:"-3" }} more</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- DevOps Skills -->
+            <div class="col-lg-4 col-md-6">
+                <div class="skill-card h-100 p-4 text-center border rounded-3 shadow-sm">
+                    <div class="skill-icon mb-3">
+                        <i class="fas fa-cogs fa-3x" style="color: #ffc107;"></i>
+                    </div>
+                    <h4 class="fw-bold mb-3">DevOps</h4>
+                    <p class="text-muted mb-4">Infrastructure and deployment</p>
+                    <div class="skill-tags">
+                        {% for skill in devops_skills|slice:":3" %}
+                        <span class="badge bg-light text-dark me-1 mb-1">{{ skill }}</span>
+                        {% endfor %}
+                        {% if devops_skills|length > 3 %}
+                        <span class="badge bg-secondary">+{{ devops_skills|length|add:"-3" }} more</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Projects -->
+{% if featured_projects %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Featured Projects</h2>
+                <p class="lead text-muted">Some of my recent work and side projects</p>
+            </div>
+        </div>
+        
+        <div class="row g-4">
+            {% for project in featured_projects %}
+            <div class="col-lg-4 col-md-6">
+                <div class="project-card h-100 bg-white rounded-3 shadow-sm overflow-hidden">
+                    {% if project.image %}
+                    <img src="{{ project.image }}" alt="{{ project.title }}" class="img-fluid" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <div class="bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <i class="fas fa-code fa-3x text-white"></i>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <h5 class="fw-bold mb-0">{{ project.title }}</h5>
+                            <span class="badge bg-primary">{{ project.category|title }}</span>
+                        </div>
+                        
+                        <p class="text-muted mb-3">{{ project.description|truncatewords:20 }}</p>
+                        
+                        <div class="project-tech mb-3">
+                            {% for tech in project.technologies|split:","|slice:":3" %}
+                            <span class="badge bg-light text-dark me-1">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="project-links">
+                            {% if project.link %}
+                            <a href="{{ project.link }}" class="btn btn-primary btn-sm" target="_blank">
+                                <i class="fas fa-external-link-alt me-1"></i>View Project
+                            </a>
+                            {% endif %}
+                            <a href="{% url 'main:project_detail' project.id %}" class="btn btn-outline-secondary btn-sm">
+                                Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="text-center mt-5">
+            <a href="{% url 'main:projects' %}" class="btn btn-outline-primary btn-lg">View All Projects</a>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Recent Experience -->
+{% if recent_experience %}
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center mb-5">
+                <h2 class="display-5 fw-bold mb-3">Current Role</h2>
+                <p class="lead text-muted">What I'm working on right now</p>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="experience-card bg-white p-4 rounded-3 shadow-sm">
+                    <div class="d-flex align-items-start">
+                        <div class="flex-shrink-0">
+                            <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                <i class="fas fa-briefcase fa-lg"></i>
+                            </div>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                            <h4 class="fw-bold mb-1">{{ recent_experience.title }}</h4>
+                            <h5 class="text-primary mb-2">{{ recent_experience.company }}</h5>
+                            <p class="text-muted mb-3">{{ recent_experience.description|truncatewords:30 }}</p>
+                            {% if recent_experience.technologies %}
+                            <div class="experience-tech">
+                                {% for tech in recent_experience.technologies|split:","|slice:":5" %}
+                                <span class="badge bg-light text-dark me-1 mb-1">{{ tech }}</span>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- Call to Action -->
+<section class="py-5 bg-primary text-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h2 class="display-5 fw-bold mb-3">Let's Work Together</h2>
+                <p class="lead mb-4">I'm always interested in new opportunities and exciting projects</p>
+                <a href="{% url 'main:contact' %}" class="btn btn-light btn-lg">Get In Touch</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -126,7 +126,7 @@ dmypy.json
 # Django specific
 media/
 staticfiles/
-static/
+# Note: static/ is NOT ignored - we need it in the container for collectstatic
 
 # IDE
 .vscode/

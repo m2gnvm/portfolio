@@ -24,7 +24,7 @@ COPY . /app/
 EXPOSE 8000
 
 # Create startup script
-RUN echo '#!/bin/sh\nset -e\npython manage.py collectstatic --noinput\nexec gunicorn --bind 0.0.0.0:8000 --workers 2 --timeout 120 portfolio.wsgi:application' > /app/start.sh && chmod +x /app/start.sh
+RUN echo '#!/bin/sh\nset -e\n# Ensure static directory exists\nmkdir -p /app/static\n# Collect static files\npython manage.py collectstatic --noinput || true\nexec gunicorn --bind 0.0.0.0:8000 --workers 2 --timeout 120 portfolio.wsgi:application' > /app/start.sh && chmod +x /app/start.sh
 
 # Run the application
 CMD ["/app/start.sh"]

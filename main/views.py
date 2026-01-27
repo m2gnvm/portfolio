@@ -2,21 +2,38 @@ import json
 import os
 from datetime import datetime
 from django.shortcuts import render
+from django.http import JsonResponse
 
 def load_portfolio_data():
     """Load portfolio data from JSON file"""
-    json_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'static', 'portfolio_data.json')
-    with open(json_path, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    
-    # Convert string dates to date objects for experience entries
-    for experience in data.get('experience', []):
-        if experience.get('start_date'):
-            experience['start_date'] = datetime.strptime(experience['start_date'], '%Y-%m-%d').date()
-        if experience.get('end_date'):
-            experience['end_date'] = datetime.strptime(experience['end_date'], '%Y-%m-%d').date()
-    
-    return data
+    try:
+        # Try multiple possible paths
+        base_dir = os.path.dirname(os.path.dirname(__file__))
+        json_path = os.path.join(base_dir, 'static', 'portfolio_data.json')
+        
+        if not os.path.exists(json_path):
+            # Fallback to project root
+            json_path = os.path.join(base_dir, 'portfolio_data.json')
+        
+        with open(json_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        
+        # Convert string dates to date objects for experience entries
+        for experience in data.get('experience', []):
+            if experience.get('start_date'):
+                experience['start_date'] = datetime.strptime(experience['start_date'], '%Y-%m-%d').date()
+            if experience.get('end_date'):
+                experience['end_date'] = datetime.strptime(experience['end_date'], '%Y-%m-%d').date()
+        
+        return data
+    except Exception as e:
+        # Return minimal data structure if file can't be loaded
+        return {
+            'personal_info': {'name': 'Error', 'title': 'Portfolio', 'summary': 'Error loading data'},
+            'skills': {'backend': [], 'data': [], 'devops': []},
+            'projects': [],
+            'experience': []
+        }
 
 def home(request):
     """Homepage view"""
@@ -111,3 +128,7 @@ def skills(request):
         'devops_skills': data['skills']['devops'],
     }
     return render(request, 'main/skills.html', context)
+
+def health_check(request):
+    """Health check endpoint for Docker/Coolify"""
+    return JsonResponse({'status': 'healthy', 'service': 'portfolio'})

@@ -20,11 +20,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy project
 COPY . /app/
 
-# Expose port
-EXPOSE 8000
+# Expose port (using 3000 to avoid conflict with Coolify dashboard on 8000)
+EXPOSE 3000
 
 # Create startup script
-RUN echo '#!/bin/sh\nset -e\n# Ensure static directory exists\nmkdir -p /app/static\n# Collect static files\npython manage.py collectstatic --noinput || true\nexec gunicorn --bind 0.0.0.0:8000 --workers 2 --timeout 120 portfolio.wsgi:application' > /app/start.sh && chmod +x /app/start.sh
+RUN echo '#!/bin/sh\nset -e\n# Ensure static directory exists\nmkdir -p /app/static\n# Collect static files\npython manage.py collectstatic --noinput || true\nexec gunicorn --bind 0.0.0.0:3000 --workers 2 --timeout 120 portfolio.wsgi:application' > /app/start.sh && chmod +x /app/start.sh
 
 # Run the application
 CMD ["/app/start.sh"]

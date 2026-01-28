@@ -40,18 +40,6 @@
   "projects": [
     {
       "id": 1,
-      "title": "Elemental Circle Game Backend",
-      "description": "A multiplayer game backend built with Django and FastAPI, featuring real-time gameplay mechanics and user management.",
-      "category": "backend",
-      "technologies": "Django, FastAPI, PostgreSQL, Redis, WebSockets",
-      "group": "personal",
-      "status": "in_progress",
-      "link": "https://github.com/m2gnvm/elemental-circle-game",
-      "live_url": null,
-      "image": null
-    },
-    {
-      "id": 2,
       "title": "GTFS Transit Delay Prediction",
       "description": "End-to-end machine learning solution for predicting public transport delays using GTFS-Realtime data, weather features, and a serverless AWS ETL pipeline.",
       "category": "data",
@@ -63,7 +51,7 @@
       "image": null
     },
     {
-      "id": 3,
+      "id": 2,
       "title": "SENSUM - Rail Ecodriving System",
       "description": "Big Data analytics platform for optimizing train driving to reduce energy consumption. System collects real-time telemetry from trains, processes it through ETL pipelines, and provides ML-driven recommendations to drivers for more efficient and eco-friendly operation.",
       "category": "data",
@@ -73,9 +61,41 @@
       "link": null,
       "live_url": "https://pgesensum.pl/strona-glowna",
       "image": "https://pgesensum.pl/var/pgesensum_site/storage/images/_aliases/lauren_text_block_with_image_xl/8/2/6/0/628-1-pol-PL/rectangle-18.webp"
+    },
+    {
+      "id": 3,
+      "title": "OIZO World - AI Travel Platform",
+      "description": "AI-powered travel platform that helps users discover, plan, and personalize trips with smart recommendations, budget-aware alternatives, and monetizable itineraries.",
+      "category": "backend",
+      "technologies": "Django, Django REST Framework, Python, React, TypeScript, Tailwind CSS, Redux Toolkit, PostgreSQL, Stripe, Clerk, Docker, Coolify, Hetzner",
+      "group": "professional",
+      "status": "in_progress",
+      "link": null,
+      "live_url": "https://oizo.world",
+      "image": "/static/images/oizo.jpeg"
+    },
+    {
+      "id": 4,
+      "title": "Elemental Circle Game Backend",
+      "description": "A multiplayer game backend built with Django and FastAPI, featuring real-time gameplay mechanics and user management.",
+      "category": "backend",
+      "technologies": "Django, FastAPI, PostgreSQL, Redis, WebSockets",
+      "group": "personal",
+      "status": "in_progress",
+      "link": "https://github.com/m2gnvm/elemental-circle-game",
+      "live_url": null,
+      "image": null
     }
   ],
   "experience": [
+    {
+      "title": "Founding Engineer",
+      "company": "OIZO World",
+      "start_date": "2024-09-01",
+      "end_date": null,
+      "description": "Co-design and implement the backend and data architecture for an AI-powered travel platform. Develop and operate Django-based APIs, background jobs, and data workflows that power user content, personalization, and integrations with third-party services. Deploy and maintain containerized services using Docker and Coolify on Hetzner VPS.",
+      "technologies": "Django, Django REST Framework, Python, PostgreSQLk, Docker, Coolify, GitHub"
+    },
     {
       "title": "Backend Developer",
       "company": "Cyfrowy Polsat S.A.",

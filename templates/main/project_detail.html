@@ -88,7 +88,7 @@
                             {{ project.description }}
                         </p>
 
-                        {% if project.id == 1 %}
+                        {% if project.id == 4 %}
                         <!-- Custom layout for Elemental Circle Game Backend -->
                         <div class="mt-4">
                             <h4 class="fw-bold mb-2">Problem & Context</h4>
@@ -154,16 +154,7 @@
                             </ul>
                         </div>
 
-                        <div class="mt-4">
-                            <h4 class="fw-bold mb-2">My Role</h4>
-                            <p class="text-muted">
-                                I designed and implemented the backend architecture, game engine, hybrid storage strategy,
-                                and Docker-based deployment workflow, as well as developer tools and simulations for
-                                testing game balance.
-                            </p>
-                        </div>
-
-                        {% elif project.id == 2 %}
+                        {% elif project.id == 1 %}
                         <!-- Custom layout for GTFS Transit Delay Prediction project -->
                         <div class="mt-4">
                             <h4 class="fw-bold mb-2">Problem & Context</h4>
@@ -209,15 +200,7 @@
                             </ul>
                         </div>
 
-                        <div class="mt-4">
-                            <h4 class="fw-bold mb-2">My Role</h4>
-                            <p class="text-muted">
-                                I designed and implemented the full solution: data collection scripts, PySpark ETL, AWS cloud
-                                architecture, model training pipeline, and evaluation tooling.
-                            </p>
-                        </div>
-
-                        {% elif project.id == 3 %}
+                        {% elif project.id == 2 %}
                         <!-- Custom layout for SENSUM Rail Ecodriving System -->
                         <div class="mt-4">
                             <h4 class="fw-bold mb-2">Problem & Context</h4>
@@ -281,6 +264,39 @@
                                 The ETL infrastructure I built processes millions of data points daily, enabling the ML models to 
                                 provide real-time driving recommendations that help operators save energy while maintaining safety and punctuality.
                             </p>
+                        </div>
+
+                        {% elif project.id == 3 %}
+                        <!-- Custom layout for OIZO World -->
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">Problem & Context</h4>
+                            <p class="text-muted">
+                                OIZO World is an AI-powered travel platform that helps users discover and plan trips by combining
+                                natural language search, smart recommendations, and monetizable itineraries. The product aims to
+                                make travel planning easier and more affordable while highlighting alternatives to overcrowded destinations.
+                            </p>
+                        </div>
+
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">Platform Architecture</h4>
+                            <ul class="text-muted">
+                                <li><strong>Frontend</strong>: React + TypeScript, Tailwind CSS, Redux Toolkit, and React Router.</li>
+                                <li><strong>Backend</strong>: Django and Django REST Framework powering core APIs and business logic.</li>
+                                <li><strong>Data & Integrations</strong>: Payment flows with Stripe and authentication via Clerk.</li>
+                                <li><strong>Deployment</strong>: Dockerized services deployed and monitored with Coolify on Hetzner VPS.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">My Role</h4>
+                            <p class="text-muted">
+                                As part of the backend and data team, I focused on designing and operating the server-side of the platform:
+                            </p>
+                            <ul class="text-muted">
+                                <li>Co-designed the backend and data architecture to keep the platform scalable and maintainable.</li>
+                                <li>Deployed and maintained backend services using Coolify, Docker, and GitHub workflows.</li>
+                                <li>Implemented REST APIs, background jobs, and data workflows in Django to power user content and personalization features.</li>
+                            </ul>
                         </div>
                         {% endif %}
                     </div>

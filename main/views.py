@@ -39,8 +39,9 @@ def home(request):
     """Homepage view"""
     data = load_portfolio_data()
     
-    # Get featured projects (first 3)
-    featured_projects = data['projects'][:3]
+    # Get featured projects (first 3 by id)
+    projects_sorted = sorted(data['projects'], key=lambda p: p.get('id', 0))
+    featured_projects = projects_sorted[:3]
     
     # Get skills by category
     backend_skills = data['skills']['backend']

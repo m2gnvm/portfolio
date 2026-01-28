@@ -44,7 +44,34 @@
       "description": "A multiplayer game backend built with Django and FastAPI, featuring real-time gameplay mechanics and user management.",
       "category": "backend",
       "technologies": "Django, FastAPI, PostgreSQL, Redis, WebSockets",
+      "group": "personal",
+      "status": "in_progress",
       "link": "https://github.com/m2gnvm/elemental-circle-game",
+      "live_url": null,
+      "image": null
+    },
+    {
+      "id": 2,
+      "title": "GTFS Transit Delay Prediction",
+      "description": "End-to-end machine learning solution for predicting public transport delays using GTFS-Realtime data, weather features, and a serverless AWS ETL pipeline.",
+      "category": "data",
+      "technologies": "Python, Scikit-learn, TensorFlow, XGBoost, PySpark, AWS S3, AWS Glue, AWS Lambda, CloudFormation, GTFS-Realtime",
+      "group": "personal",
+      "status": "in_progress",
+      "link": "https://github.com/m2gnvm/gtfs-delay-prediction",
+      "live_url": null,
+      "image": null
+    },
+    {
+      "id": 3,
+      "title": "SENSUM - Rail Ecodriving System",
+      "description": "Big Data analytics platform for optimizing train driving to reduce energy consumption. System collects real-time telemetry from trains, processes it through ETL pipelines, and provides ML-driven recommendations to drivers for more efficient and eco-friendly operation.",
+      "category": "data",
+      "technologies": "PySpark, Kafka, Python, Apache Airflow, MongoDB, HDFS, Machine Learning, Big Data, Real-time Processing",
+      "group": "professional",
+      "status": "deployed",
+      "link": "https://pgesensum.pl/strona-glowna",
+      "live_url": "https://pgesensum.pl/strona-glowna",
       "image": null
     }
   ],

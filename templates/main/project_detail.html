@@ -51,6 +51,12 @@
                                         <i class="fas fa-tag text-primary me-2"></i>
                                         <strong>Category:</strong> {{ project.category|title }}
                                     </li>
+                                    {% if project.status %}
+                                    <li class="mb-2">
+                                        <i class="fas fa-info-circle text-primary me-2"></i>
+                                        <strong>Status:</strong> {{ project.status|status_label }}
+                                    </li>
+                                    {% endif %}
                                     <li class="mb-2">
                                         <i class="fas fa-code text-primary me-2"></i>
                                         <strong>Type:</strong> {{ project.category|title }} Project
@@ -78,18 +84,223 @@
                 <div class="mb-5">
                     <h3 class="fw-bold mb-3">About This Project</h3>
                     <div class="project-description">
-                        {{ project.description|linebreaks }}
+                        <p class="mb-3">
+                            {{ project.description }}
+                        </p>
+
+                        {% if project.id == 1 %}
+                        <!-- Custom layout for Elemental Circle Game Backend -->
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">Problem & Context</h4>
+                            <p class="text-muted">
+                                Backend for a strategic elemental card game designed for real-time multiplayer battles.
+                                Focus on building a robust API and game engine that can support web, mobile, and desktop
+                                clients through a single backend.
+                            </p>
+                        </div>
+
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">Architecture Overview</h4>
+                            <p class="text-muted mb-2">
+                                The game uses a hybrid architecture to combine real-time performance with reliable
+                                persistence:
+                            </p>
+                            <ul class="text-muted">
+                                <li><strong>FastAPI</strong> backend exposing REST and WebSocket endpoints.</li>
+                                <li><strong>Redis</strong> for ultra-fast, in-memory game state (hands, scores, turn info).</li>
+                                <li><strong>PostgreSQL</strong> with SQLAlchemy for users, game events, and analytics.</li>
+                                <li>Containerised with Docker, ready for local or cloud deployment.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">Key Backend Components</h4>
+                            <ul class="text-muted">
+                                <li><strong>HybridGameService</strong>: Orchestrates Redis + PostgreSQL operations.</li>
+                                <li><strong>RedisGameService</strong>: Manages real-time game state with TTL and pub/sub.</li>
+                                <li><strong>EventService</strong>: Logs detailed game events for analytics and debugging.</li>
+                                <li><strong>Dynamic Card Engine</strong>: Generates cards in code without database dependency.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">Gameplay & Rules</h4>
+                            <p class="text-muted mb-2">
+                                Element-based combat system similar to rock–paper–scissors, implemented in the backend:
+                            </p>
+                            <ul class="text-muted">
+                                <li>Elements: Fire, Water, Grass with symmetric advantages and multipliers.</li>
+                                <li>Cards have values (1–8) and element; backend applies elemental multipliers.</li>
+                                <li>Turn-based system: one player plays onboard card, the other counter-plays.</li>
+                                <li>Scoring formula drives points and winner calculation per round and game.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">API & Real-time Layer</h4>
+                            <ul class="text-muted">
+                                <li>JWT-secured REST endpoints for auth, game creation, joining, and state inspection.</li>
+                                <li>WebSocket endpoint for live game updates and moves.</li>
+                                <li>Health and utility scripts for local development and simulations (AI vs player, AI vs AI).</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">Future Roadmap</h4>
+                            <ul class="text-muted">
+                                <li>Smarter AI opponents and tournament modes.</li>
+                                <li>Flutter frontends (web, mobile, desktop) connected to the same backend.</li>
+                                <li>Cloud deployment with load balancing and analytics for balancing and anti-cheat.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">Your Role</h4>
+                            <p class="text-muted">
+                                Designed and implemented the backend architecture, game engine, hybrid storage strategy,
+                                and Docker-based deployment workflow, as well as developer tools and simulations for
+                                testing game balance.
+                            </p>
+                        </div>
+
+                        {% elif project.id == 2 %}
+                        <!-- Custom layout for GTFS Transit Delay Prediction project -->
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">Problem & Context</h4>
+                            <p class="text-muted">
+                                Project focused on predicting public transport delays based on weather conditions and real-time
+                                GTFS data from the Stockholm transit system, combining streaming transit data with rich
+                                meteorological features.
+                            </p>
+                        </div>
+
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">Architecture Overview</h4>
+                            <p class="text-muted mb-2">
+                                End-to-end, cloud-native pipeline that moves from raw GTFS-Realtime feeds to ML-ready datasets and
+                                model inference:
+                            </p>
+                            <ul class="text-muted">
+                                <li>Local orchestrator downloads GTFS-RT feeds, extracts <code>.pb</code> files, and uploads them to S3.</li>
+                                <li>AWS Glue PySpark job performs ETL, joins weather data, and engineers temporal & lag features.</li>
+                                <li>Trained models and metrics are stored for downstream inference and evaluation.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">Key Components</h4>
+                            <ul class="text-muted">
+                                <li><strong>ETL Pipeline</strong> with AWS Glue (PySpark) for large-scale data processing.</li>
+                                <li><strong>AWS Lambda</strong> functions for ETL orchestration, inference, and automated retraining.</li>
+                                <li><strong>Infrastructure as Code</strong> using CloudFormation templates for Glue, S3, and related IAM roles.</li>
+                                <li><strong>Monitoring</strong> via CloudWatch dashboards and alarms.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">Machine Learning</h4>
+                            <p class="text-muted mb-2">
+                                Binary classification task: predict whether a vehicle will be delayed more than 180 seconds.
+                            </p>
+                            <ul class="text-muted">
+                                <li>Models: Logistic Regression, Random Forest, Neural Network (MLP), XGBoost.</li>
+                                <li>Feature engineering: temporal features, weather indicators, lagged delays, and moving averages.</li>
+                                <li>Best models achieve high AUC-ROC (~0.94 for XGBoost) with lag-enhanced features.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">Your Role</h4>
+                            <p class="text-muted">
+                                Designed and implemented the full solution: data collection scripts, PySpark ETL, AWS cloud
+                                architecture, model training pipeline, evaluation tooling, and documentation as part of the thesis.
+                            </p>
+                        </div>
+
+                        {% elif project.id == 3 %}
+                        <!-- Custom layout for SENSUM Rail Ecodriving System -->
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">Problem & Context</h4>
+                            <p class="text-muted">
+                                SENSUM is an innovative ecodriving system for rail transport, developed by PGE Energetyka Kolejowa 
+                                in cooperation with PGE Systemy and REDS. The system helps train operators optimize driving patterns 
+                                to reduce energy consumption by over 8.5%, while improving punctuality and passenger comfort. 
+                                Currently deployed at Koleje Mazowieckie (Mazovian Railways), one of Poland's largest rail operators.
+                            </p>
+                        </div>
+
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">System Overview</h4>
+                            <p class="text-muted mb-2">
+                                SENSUM collects and analyzes Big Data from train telemetry systems in real-time:
+                            </p>
+                            <ul class="text-muted">
+                                <li>Real-time data collection from train sensors and onboard systems during operation.</li>
+                                <li>Big Data processing pipeline handling thousands of data points per journey.</li>
+                                <li>ML-driven recommendations provided to drivers via in-cab interface for optimal driving patterns.</li>
+                                <li>Energy savings tracking and analytics for continuous improvement.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">Data Engineering Architecture</h4>
+                            <ul class="text-muted">
+                                <li><strong>Real-time Data Ingestion</strong>: Streaming telemetry data from trains via Kafka for high-throughput processing.</li>
+                                <li><strong>ETL Pipelines</strong>: PySpark-based transformation pipelines to clean, normalize, and enrich raw sensor data.</li>
+                                <li><strong>Data Storage</strong>: MongoDB and HDFS for storing processed telemetry and historical journey data.</li>
+                                <li><strong>Orchestration</strong>: Apache Airflow for scheduling and monitoring ETL workflows.</li>
+                                <li><strong>ML Data Preparation</strong>: Feature engineering and data preparation pipelines feeding machine learning models.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">Impact & Results</h4>
+                            <ul class="text-muted">
+                                <li>Over 10,000 hours of testing with 5 rail operators covering ~600,000 km of test journeys.</li>
+                                <li>Energy savings exceeding 300 MWh during testing phase (8.5% reduction).</li>
+                                <li>First production deployment at Koleje Mazowieckie, with estimated annual savings of over 22 GWh.</li>
+                                <li>Improved driving smoothness and punctuality, enhancing passenger experience.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-4">
+                            <h4 class="fw-bold mb-2">My Role</h4>
+                            <p class="text-muted">
+                                As a Data Engineer at REDS S.A., I designed and implemented the core ETL pipeline infrastructure 
+                                for SENSUM. My responsibilities included:
+                            </p>
+                            <ul class="text-muted">
+                                <li>Building real-time data ingestion pipelines using Kafka to collect telemetry data from trains.</li>
+                                <li>Developing PySpark-based ETL jobs to transform raw sensor data into structured, ML-ready datasets.</li>
+                                <li>Designing data models and schemas for efficient storage and querying of train telemetry in MongoDB and HDFS.</li>
+                                <li>Creating feature engineering pipelines to extract meaningful patterns from train operation data.</li>
+                                <li>Orchestrating data workflows with Apache Airflow to ensure reliable, scheduled processing.</li>
+                                <li>Optimizing data processing performance to handle high-volume, real-time streams from multiple trains simultaneously.</li>
+                            </ul>
+                            <p class="text-muted mt-2">
+                                The ETL infrastructure I built processes millions of data points daily, enabling the ML models to 
+                                provide real-time driving recommendations that help operators save energy while maintaining safety and punctuality.
+                            </p>
+                        </div>
+                        {% endif %}
                     </div>
                 </div>
                 
                 <!-- Project Links -->
-                {% if project.link %}
+                {% if project.link or project.live_url %}
                 <div class="mb-5">
                     <h3 class="fw-bold mb-3">Project Links</h3>
                     <div class="d-flex gap-3 flex-wrap">
-                        <a href="{{ project.link }}" class="btn btn-primary btn-lg" target="_blank">
-                            <i class="fas fa-external-link-alt me-2"></i>View Project
+                        {% if project.live_url %}
+                        <a href="{{ project.live_url }}" class="btn btn-success btn-lg" target="_blank">
+                            <i class="fas fa-play me-2"></i>View Live App
                         </a>
+                        {% endif %}
+                        {% if project.link %}
+                        <a href="{{ project.link }}" class="btn btn-primary btn-lg" target="_blank">
+                            <i class="fas fa-code-branch me-2"></i>View Code
+                        </a>
+                        {% endif %}
                     </div>
                 </div>
                 {% endif %}

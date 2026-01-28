@@ -133,7 +133,14 @@
                     
                     <div class="p-4">
                         <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h5 class="fw-bold mb-0">{{ project.title }}</h5>
+                            <div>
+                                <h5 class="fw-bold mb-1">{{ project.title }}</h5>
+                                {% if project.status %}
+                                <span class="badge bg-outline-secondary text-muted border">
+                                    {{ project.status|status_label }}
+                                </span>
+                                {% endif %}
+                            </div>
                             <span class="badge bg-primary">{{ project.category|title }}</span>
                         </div>
                         
@@ -146,7 +153,11 @@
                         </div>
                         
                         <div class="project-links">
-                            {% if project.link %}
+                            {% if project.live_url %}
+                            <a href="{{ project.live_url }}" class="btn btn-primary btn-sm" target="_blank">
+                                <i class="fas fa-external-link-alt me-1"></i>View Project
+                            </a>
+                            {% elif project.link %}
                             <a href="{{ project.link }}" class="btn btn-primary btn-sm" target="_blank">
                                 <i class="fas fa-external-link-alt me-1"></i>View Project
                             </a>

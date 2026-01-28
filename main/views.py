@@ -73,18 +73,16 @@ def about(request):
 def projects(request):
     """Projects listing page"""
     data = load_portfolio_data()
-    category = request.GET.get('category', '')
-    
     projects_list = data['projects']
-    
-    # Filter by category
-    if category:
-        projects_list = [p for p in projects_list if p['category'] == category]
+
+    # Split into personal vs professional/industry projects
+    personal_projects = [p for p in projects_list if p.get('group', 'personal') == 'personal']
+    professional_projects = [p for p in projects_list if p.get('group') == 'professional']
     
     context = {
         'personal_info': data['personal_info'],
-        'projects': projects_list,
-        'current_category': category,
+        'personal_projects': personal_projects,
+        'professional_projects': professional_projects,
     }
     return render(request, 'main/projects.html', context)
 

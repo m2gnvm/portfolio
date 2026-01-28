@@ -45,11 +45,18 @@
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <div>
                                 <h5 class="fw-bold mb-1">{{ project.title }}</h5>
-                                {% if project.status %}
-                                <span class="badge bg-outline-secondary text-muted border">
-                                    {{ project.status|status_label }}
-                                </span>
-                                {% endif %}
+                                <div class="d-flex flex-wrap gap-1 mb-1">
+                                    {% if project.group == 'personal' %}
+                                    <span class="badge bg-success">My Own Project</span>
+                                    {% elif project.group == 'professional' %}
+                                    <span class="badge bg-info text-dark">Project I Took Part In</span>
+                                    {% endif %}
+                                    {% if project.status %}
+                                    <span class="badge bg-outline-secondary text-muted border">
+                                        {{ project.status|status_label }}
+                                    </span>
+                                    {% endif %}
+                                </div>
                             </div>
                             <span class="badge bg-primary">{{ project.category|title }}</span>
                         </div>
@@ -112,11 +119,18 @@
                         <div class="d-flex justify-content-between align-items-start mb-2">
                             <div>
                                 <h5 class="fw-bold mb-1">{{ project.title }}</h5>
-                                {% if project.status %}
-                                <span class="badge bg-outline-secondary text-muted border">
-                                    {{ project.status|status_label }}
-                                </span>
-                                {% endif %}
+                                <div class="d-flex flex-wrap gap-1 mb-1">
+                                    {% if project.group == 'personal' %}
+                                    <span class="badge bg-success">My Own Project</span>
+                                    {% elif project.group == 'professional' %}
+                                    <span class="badge bg-info text-dark">Project I Took Part In</span>
+                                    {% endif %}
+                                    {% if project.status %}
+                                    <span class="badge bg-outline-secondary text-muted border">
+                                        {{ project.status|status_label }}
+                                    </span>
+                                    {% endif %}
+                                </div>
                             </div>
                             <span class="badge bg-primary">{{ project.category|title }}</span>
                         </div>

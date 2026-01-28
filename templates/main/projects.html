@@ -8,37 +8,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 mx-auto text-center">
-                <h1 class="display-4 fw-bold mb-4">My Projects</h1>
-                <p class="lead text-muted">A collection of my work and side projects</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Filters and Search -->
-<section class="py-4 border-bottom">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <form method="get" class="row g-3 align-items-end">
-                    <div class="col-md-6">
-                        <label for="search" class="form-label">Search Projects</label>
-                        <input type="text" class="form-control" id="search" name="search" 
-                               value="{{ search_query }}" placeholder="Search by title, description, or technology...">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="category" class="form-label">Category</label>
-                        <select class="form-select" id="category" name="category">
-                            <option value="">All Categories</option>
-                            <option value="backend" {% if current_category == 'backend' %}selected{% endif %}>Backend</option>
-                            <option value="data" {% if current_category == 'data' %}selected{% endif %}>Data</option>
-                            <option value="devops" {% if current_category == 'devops' %}selected{% endif %}>DevOps</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <button type="submit" class="btn btn-primary w-100">Filter</button>
-                    </div>
-                </form>
+                <h1 class="display-4 fw-bold mb-4">Projects</h1>
+                <p class="lead text-muted">
+                    Selected personal projects and interesting work I've contributed to in my professional roles.
+                </p>
             </div>
         </div>
     </div>
@@ -47,9 +20,17 @@
 <!-- Projects Grid -->
 <section class="py-5">
     <div class="container">
-        {% if projects %}
-        <div class="row g-4">
-            {% for project in projects %}
+        {% if personal_projects %}
+        <!-- Personal Projects -->
+        <div class="mb-5">
+            <div class="row mb-4">
+                <div class="col-lg-8">
+                    <h2 class="h3 fw-bold">My Own Projects</h2>
+                    <p class="text-muted mb-0">Self-driven projects and experiments where I own the architecture and implementation.</p>
+                </div>
+            </div>
+            <div class="row g-4">
+            {% for project in personal_projects %}
             <div class="col-lg-4 col-md-6">
                 <div class="project-card h-100 bg-white rounded-3 shadow-sm overflow-hidden">
                     {% if project.image %}
@@ -62,7 +43,14 @@
                     
                     <div class="p-4">
                         <div class="d-flex justify-content-between align-items-start mb-2">
-                            <h5 class="fw-bold mb-0">{{ project.title }}</h5>
+                            <div>
+                                <h5 class="fw-bold mb-1">{{ project.title }}</h5>
+                                {% if project.status %}
+                                <span class="badge bg-outline-secondary text-muted border">
+                                    {{ project.status|status_label }}
+                                </span>
+                                {% endif %}
+                            </div>
                             <span class="badge bg-primary">{{ project.category|title }}</span>
                         </div>
                         
@@ -75,8 +63,12 @@
                         </div>
                         
                         <div class="project-links">
-                            {% if project.link %}
-                            <a href="{{ project.link }}" class="btn btn-primary btn-sm me-2" target="_blank">
+                            {% if project.live_url %}
+                            <a href="{{ project.live_url }}" class="btn btn-primary btn-sm me-2" target="_blank">
+                                <i class="fas fa-external-link-alt me-1"></i>View Project
+                            </a>
+                            {% elif project.link %}
+                            <a href "{{ project.link }}" class="btn btn-primary btn-sm me-2" target="_blank">
                                 <i class="fas fa-external-link-alt me-1"></i>View Project
                             </a>
                             {% endif %}
@@ -89,25 +81,72 @@
             </div>
             {% endfor %}
         </div>
-        
-        {% else %}
+        {% endif %}
+
+        {% if professional_projects %}
+        <!-- Professional / Work Projects -->
         <div class="row">
-            <div class="col-lg-8 mx-auto text-center">
-                <div class="py-5">
-                    <i class="fas fa-search fa-3x text-muted mb-3"></i>
-                    <h3 class="fw-bold mb-3">No Projects Found</h3>
-                    <p class="text-muted mb-4">
-                        {% if current_category %}
-                        Try adjusting your category filter.
-                        {% else %}
-                        No projects have been added yet.
-                        {% endif %}
-                    </p>
-                    {% if current_category %}
-                    <a href="{% url 'main:projects' %}" class="btn btn-primary">Clear Filters</a>
+            <div class="col-12">
+                <hr class="my-5">
+            </div>
+        </div>
+        <div class="row mb-4">
+            <div class="col-lg-8">
+                <h2 class="h3 fw-bold">Professional Projects</h2>
+                <p class="text-muted mb-0">Interesting projects I've contributed to as part of my regular work.</p>
+            </div>
+        </div>
+        <div class="row g-4">
+            {% for project in professional_projects %}
+            <div class="col-lg-4 col-md-6">
+                <div class="project-card h-100 bg-white rounded-3 shadow-sm overflow-hidden">
+                    {% if project.image %}
+                    <img src="{{ project.image }}" alt="{{ project.title }}" class="img-fluid" style="height: 200px; object-fit: cover;">
+                    {% else %}
+                    <div class="bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <i class="fas fa-briefcase fa-3x text-white"></i>
+                    </div>
                     {% endif %}
+                    
+                    <div class="p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <div>
+                                <h5 class="fw-bold mb-1">{{ project.title }}</h5>
+                                {% if project.status %}
+                                <span class="badge bg-outline-secondary text-muted border">
+                                    {{ project.status|status_label }}
+                                </span>
+                                {% endif %}
+                            </div>
+                            <span class="badge bg-primary">{{ project.category|title }}</span>
+                        </div>
+                        
+                        <p class="text-muted mb-3">{{ project.description|truncatewords:20 }}</p>
+                        
+                        <div class="project-tech mb-3">
+                            {% for tech in project.technologies|split:","|slice:":4" %}
+                            <span class="badge bg-light text-dark me-1 mb-1">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="project-links">
+                            {% if project.live_url %}
+                            <a href="{{ project.live_url }}" class="btn btn-primary btn-sm me-2" target="_blank">
+                                <i class="fas fa-external-link-alt me-1"></i>View Project
+                            </a>
+                            {% elif project.link %}
+                            <a href="{{ project.link }}" class="btn btn-primary btn-sm me-2" target="_blank">
+                                <i class="fas fa-external-link-alt me-1"></i>View Project
+                            </a>
+                            {% endif %}
+                            <a href="{% url 'main:project_detail' project.id %}" class="btn btn-outline-secondary btn-sm">
+                                Details
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
+            {% endfor %}
         </div>
         {% endif %}
     </div>

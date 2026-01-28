@@ -1,6 +1,6 @@
 import json
 import os
-from datetime import datetime
+from datetime import datetime, date
 from django.shortcuts import render
 from django.http import JsonResponse
 
@@ -48,8 +48,14 @@ def home(request):
     data_skills = data['skills']['data']
     devops_skills = data['skills']['devops']
     
-    # Get recent experience
-    recent_experience = data['experience'][0] if data['experience'] else None
+    # Get recent experience (most recent by start_date)
+    experiences = data.get('experience', [])
+    recent_experience = None
+    if experiences:
+        recent_experience = max(
+            experiences,
+            key=lambda e: e.get('start_date') or date.min,
+        )
     
     context = {
         'personal_info': data['personal_info'],
@@ -65,9 +71,17 @@ def about(request):
     """About page view"""
     data = load_portfolio_data()
     
+    # Sort experiences by start_date descending (newest first)
+    experiences = data.get('experience', [])
+    experiences_sorted = sorted(
+        experiences,
+        key=lambda e: e.get('start_date') or date.min,
+        reverse=True,
+    )
+    
     context = {
         'personal_info': data['personal_info'],
-        'experiences': data['experience'],
+        'experiences': experiences_sorted,
     }
     return render(request, 'main/about.html', context)
 

@@ -70,7 +70,7 @@
       "technologies": "PySpark, Kafka, Python, Apache Airflow, MongoDB, HDFS, Machine Learning, Big Data, Real-time Processing",
       "group": "professional",
       "status": "deployed",
-      "link": "https://pgesensum.pl/strona-glowna",
+      "link": null,
       "live_url": "https://pgesensum.pl/strona-glowna",
       "image": "https://pgesensum.pl/var/pgesensum_site/storage/images/_aliases/lauren_text_block_with_image_xl/8/2/6/0/628-1-pol-PL/rectangle-18.webp"
     }

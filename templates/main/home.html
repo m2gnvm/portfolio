@@ -124,7 +124,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="project-card h-100 bg-white rounded-3 shadow-sm overflow-hidden">
                     {% if project.image %}
-                    <img src="{{ project.image }}" alt="{{ project.title }}" class="img-fluid" style="height: 200px; object-fit: cover;">
+                    <img src="{{ project.image }}" alt="{{ project.title }}" class="img-fluid w-100" style="height: 200px; object-fit: cover; object-position: center;">
                     {% else %}
                     <div class="bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
                         <i class="fas fa-code fa-3x text-white"></i>
@@ -148,10 +148,13 @@
                                     {% endif %}
                                 </div>
                             </div>
-                            <span class="badge bg-primary">{{ project.category|title }}</span>
                         </div>
                         
-                        <p class="text-muted mb-3">{{ project.description|truncatewords:20 }}</p>
+                        <p class="text-muted mb-2">{{ project.description|truncatewords:20 }}</p>
+                        
+                        <div class="mb-2">
+                            <span class="badge bg-primary">{{ project.category|title }}</span>
+                        </div>
                         
                         <div class="project-tech mb-3">
                             {% for tech in project.technologies|split:","|slice:":3" %}

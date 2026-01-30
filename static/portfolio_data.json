@@ -48,7 +48,7 @@
       "status": "in_progress",
       "link": "https://github.com/m2gnvm/gtfs-delay-prediction",
       "live_url": null,
-      "image": null
+      "image": "/static/images/gtfs_delay.png"
     },
     {
       "id": 2,

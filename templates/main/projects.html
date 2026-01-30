@@ -34,7 +34,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="project-card h-100 bg-white rounded-3 shadow-sm overflow-hidden">
                     {% if project.image %}
-                    <img src="{{ project.image }}" alt="{{ project.title }}" class="img-fluid w-100" style="height: 200px; object-fit: cover; object-position: center;">
+                    <img src="{{ project.image }}" alt="{{ project.title }}" class="img-fluid w-100" style="height: 200px; object-fit: contain; object-position: center; background-color: #f8f9fa;">
                     {% else %}
                     <div class="bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
                         <i class="fas fa-code fa-3x text-white"></i>
@@ -111,7 +111,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="project-card h-100 bg-white rounded-3 shadow-sm overflow-hidden">
                     {% if project.image %}
-                    <img src="{{ project.image }}" alt="{{ project.title }}" class="img-fluid" style="height: 200px; object-fit: cover;">
+                    <img src="{{ project.image }}" alt="{{ project.title }}" class="img-fluid" style="height: 200px; object-fit: contain; object-position: center; background-color: #f8f9fa;">
                     {% else %}
                     <div class="bg-secondary d-flex align-items-center justify-content-center" style="height: 200px;">
                         <i class="fas fa-briefcase fa-3x text-white"></i>

@@ -94,23 +94,23 @@
       "start_date": "2024-09-01",
       "end_date": null,
       "description": "Co-design and implement the backend and data architecture for an AI-powered travel platform. Develop and operate Django-based APIs, background jobs, and data workflows that power user content, personalization, and integrations with third-party services. Deploy and maintain containerized services using Docker and Coolify on Hetzner VPS.",
-      "technologies": "Django, Django REST Framework, Python, PostgreSQLk, Docker, Coolify, GitHub"
+      "technologies": "Django, Django REST Framework, Python, PostgreSQL, Docker, Coolify, GitHub"
     },
     {
-      "title": "Backend Developer",
+      "title": "Data Engineer",
       "company": "Cyfrowy Polsat S.A.",
       "start_date": "2024-12-01",
       "end_date": null,
       "description": "Design and develop BI pipelines to process and analyze data from the Polsat Box Go platform. Build REST endpoints to distribute and expose business data. Create data models and reporting solutions to support business intelligence needs.",
-      "technologies": "Python, Django, FastAPI, PostgreSQL, Redis, Apache Airflow, Docker, Kubernetes"
+      "technologies": "Python, Django, FastAPI, PostgreSQL, Redis, MongoDB, Docker"
     },
     {
-      "title": "Backend Developer/Data Engineer",
+      "title": "Python/Spark Developer",
       "company": "REDS S.A.",
       "start_date": "2022-09-01",
       "end_date": "2024-11-30",
       "description": "Built real-time data processing pipelines with PySpark for ingesting and transforming streaming data. Designed and documented data models and flows to improve architecture. Developed an end-to-end data warehouse integrating Kafka and PySpark for analytics. Delivered ETL pipelines to process and analyze railway telemetry in near real-time.",
-      "technologies": "PySpark, Kafka, MongoDB, HDFS, Apache Airflow, Python, Docker, Linux"
+      "technologies": "Python, PySpark, Kafka, HDFS, Apache Airflow, Docker, Linux"
     },
     {
       "title": "Software Engineer",
